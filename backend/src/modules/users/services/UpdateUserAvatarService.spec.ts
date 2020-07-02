@@ -3,15 +3,21 @@ import FakeStorageProvider from '@shared/container/providers/StorageProvider/fak
 import FakeUsersRepository from '../repositories/fakes/FakeUsersRepository';
 import UpdateUserAvatarService from './UpdateUserAvatarService';
 
+let fakeUserRepository: FakeUsersRepository;
+let fakeStorageProvider: FakeStorageProvider;
+let updateUserAvatar: UpdateUserAvatarService;
+
 describe('UpdateUserAvatar', () => {
-	it('should be able to update the user avatar', async () => {
-		const fakeUserRepository = new FakeUsersRepository();
-		const fakeStorageProvider = new FakeStorageProvider();
-		const updateUserAvatar = new UpdateUserAvatarService(
+	beforeEach(() => {
+		fakeUserRepository = new FakeUsersRepository();
+		fakeStorageProvider = new FakeStorageProvider();
+		updateUserAvatar = new UpdateUserAvatarService(
 			fakeUserRepository,
 			fakeStorageProvider,
 		);
+	});
 
+	it('should be able to update the user avatar', async () => {
 		const user = await fakeUserRepository.create({
 			name: 'John Doe',
 			email: 'johndoe@gmail.com',
@@ -27,14 +33,7 @@ describe('UpdateUserAvatar', () => {
 	});
 
 	it('should not be able to update a non-existent user avatar', async () => {
-		const fakeUserRepository = new FakeUsersRepository();
-		const fakeStorageProvider = new FakeStorageProvider();
-		const updateUserAvatar = new UpdateUserAvatarService(
-			fakeUserRepository,
-			fakeStorageProvider,
-		);
-
-		expect(
+		await expect(
 			updateUserAvatar.execute({
 				user_id: 'non-existent',
 				avatarFilename: 'avatar.jpg',
@@ -43,13 +42,6 @@ describe('UpdateUserAvatar', () => {
 	});
 
 	it('should be able to update the user avatar and delete the old one', async () => {
-		const fakeUserRepository = new FakeUsersRepository();
-		const fakeStorageProvider = new FakeStorageProvider();
-		const updateUserAvatar = new UpdateUserAvatarService(
-			fakeUserRepository,
-			fakeStorageProvider,
-		);
-
 		const deleteFile = jest.spyOn(fakeStorageProvider, 'deleteFile');
 
 		const user = await fakeUserRepository.create({
