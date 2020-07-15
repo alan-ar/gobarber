@@ -42,6 +42,7 @@ export default class AlterAppointmentProviderField1587518117228
 			new TableColumn({
 				name: 'provider',
 				type: 'varchar',
+				isNullable: true,
 			}),
 		);
 	}
