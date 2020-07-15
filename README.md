@@ -7,7 +7,7 @@
 </h3>
 
 <p align="center">
- <img alt="Projeto" src="" width="70%"/>
+ <img alt="Projeto" src="GoBarber.png" width="70%"/>
 </p>
 
 ## 📌Tecnologias
