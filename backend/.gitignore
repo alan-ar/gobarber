@@ -1,6 +1,7 @@
 node_modules/
 .vscode/
 coverage/
+/coverage
 .coverage/
 build/
 .env
