@@ -6,7 +6,7 @@ import ListProviderAvailableHoursService from '@modules/appointments/services/Li
 export default class ProvidersAvailableHoursController {
 	public async index(request: Request, response: Response): Promise<Response> {
 		const { year, month, day } = request.query;
-		const { provider_id } = request.params;
+		const provider_id = request.user.id;
 
 		const listAvailableHours = container.resolve(
 			ListProviderAvailableHoursService,

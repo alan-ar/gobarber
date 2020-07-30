@@ -34,6 +34,8 @@ class ListProviderAppointmentsService {
 			cacheKey,
 		);
 
+		// let appointments;
+
 		if (!appointments) {
 			appointments = await this.appointmentsRepository.findProviderDayHours({
 				provider_id,
