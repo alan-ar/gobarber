@@ -33,4 +33,4 @@ Aplicação de agendamento e gerenciamento de serviços de barbeiro ou salão de
 
 O usuário através do aplicativo mobile, consegue visualizar todos os prestadores de serviços registrados e agendar um horário disponível.
 
-Já o prestador de serviço, através da interface da web, consegue visualizar todos os horários agendados.
+Já o prestador de serviço, através da interface web, consegue visualizar todos os horários agendados.
